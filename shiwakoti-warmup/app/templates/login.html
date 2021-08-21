@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    <!-- TODO: (milestone 3) Include the login form here...  -->
+    <form action="" method="post" novalidate>
+    	{{ form.hidden_tag() }}
+    	<p>
+    		{{ form.username.label }}<br>
+    		{{ form.username(class='login-input') }}
+    		{% for error in form.username.errors %}
+    		<span style="color: red;">[{{ error }}]</span>
+    		{% endfor %}
+    	</p>
+    	<p>
+    		{{ form.password.label }}<br>
+    		{{ form.password(class='login-input') }}
+    		{% for error in form.password.errors %}
+    		<span style="color: red;">[{{ error }}]</span>
+    		{% endfor %}
+    	</p>
+    	<p>
+    		{{ form.remember_me() }}
+    		{{ form.remember_me.label }}
+    	</p>
+    	<p>
+    		{{ form.submit(class='button') }}
+    	</p>	
+    </form>
+    <!-- TODO: (milestone 3) Add the URL for user register route. --> 
+    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+{% endblock %}
+

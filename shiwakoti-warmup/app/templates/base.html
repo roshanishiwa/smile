@@ -1,0 +1,50 @@
+<html>
+    <head>
+       {% if title %}
+          <title>{{ title }} - Smile </title>
+       {% else %}
+          <title> Welcome to Smile Portal! </title>
+       {% endif %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+       {{ moment.include_jquery() }}
+       {{ moment.include_moment() }}
+    </head>
+
+    <body>
+        <div class ="nav-container">
+        <table>
+            <tr>
+                <td><a href="{{ url_for('index') }}" class = "button">Smiles</a></td>
+                <!-- TODO: (milestone 1) add the URL for the "Post Smile". -->
+                <td><a href="{{ url_for('view') }}" class = "button"> Post Smile </a></td>
+                <!-- TODO: (milestone 3) add the "Login" or "Logous" link. If the user is logged in, Login link should be displayed, otherwise Logout link should be displayed. --> 
+                {% if current_user.is_anonymous %}
+                    <td><a href="{{ url_for('login') }}" class = "button"> Login </a></td>
+                {% else %}
+                    <td><a href="{{ url_for('logout') }}" class = "button"> Logout </a></td>
+                    <td> Current user is: <span class="useritem"> 
+                    <!-- TODO: (milestone 3) include the username of the logged-in user. --> 
+                    {% if current_user.is_authenticated %}
+                        <span class="user">{{current_user.username}}</span>
+                    {% else %}
+                        ______
+                    {% endif %}
+                    </span></td>
+                {% endif %}
+            </tr>
+        </table>
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class = "flash-container"> {{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %} {% endblock %}
+        </div>
+
+    </body>
+</html>

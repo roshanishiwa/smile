@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Register</h1>
+    <!-- TODO: (milestone 3) Include the "user registration" form here..  -->
+    <form action="" method="post">
+    	{{ form.hidden_tag() }}
+    	<p>
+    		{{ form.username.label }}<br>
+    		{{ form.username(class = "login-input") }}<br>
+    		{% for error in form.username.errors %}
+    		<span style="color: red;">[{{ error }}]</span>
+    		{% endfor %}
+    	</p>
+    	<p>
+    		{{ form.email.label }}<br>
+    		{{ form.email(class = "login-input") }}<br>
+    		{% for error in form.email.errors %}
+    		<span style="color: red;">[{{ error }}]</span>
+    		{% endfor %}
+    	</p>
+    	<p>
+    		{{ form.password.label }}<br>
+    		{{ form.password(class = "login-input" )}}<br>
+    		{% for error in form.password.errors %}
+    		<span style="color: red;">[{{ error }}]</span>
+    		{% endfor %}
+    	</p>
+    	<p>
+    		{{ form.password2.label }}<br>
+    		{{ form.password2(class = "login-input" )}}<br>
+    		{% for error in form.password2.errors %}
+    		<span style="color: red;">[{{ error }}]</span>
+    		{% endfor %}
+    	</p>
+    	<p>
+    		{{ form.submit(class="register-button") }}
+    	</p>
+    </form>
+ 
+{% endblock %}
